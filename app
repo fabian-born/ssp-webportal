@@ -1,1 +1,0 @@
-/opt/webapp-docker/web/public
