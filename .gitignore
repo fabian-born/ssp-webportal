@@ -1,2 +1,3 @@
 app/config/config.php
-pp/config/ssh-keys/deploy-vm-automated*
+app/config/ssh-keys/deploy-vm-automated*
+
