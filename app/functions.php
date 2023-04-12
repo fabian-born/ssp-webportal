@@ -20,9 +20,8 @@ function generateRandomString($length = 10) {
 
 function send_apicall2awx($jobID, $jsoncontent){
     include("config/config.php");
-    // $jobid = '32';
+    
     $authToken = $config["awx_auth_token"];
-    // $authToken = '6iCFl5WyXGkT83ZKeYAmzdcnbRIcI8';
     
     // The data to send to the API
     $postData = array(
