@@ -24,7 +24,7 @@
          # $update_sql = mysqli_query($db,"update users set lastlogin = now() where username = " . $_SESSION['login_user'] );
          header("location: /index.php");
       }else {
-         $error = "Your Login Name or Password is invalid";
+         $login_error = "Your Login Name or Password is invalid";
       }
    }
 ?>

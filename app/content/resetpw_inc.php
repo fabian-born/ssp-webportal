@@ -13,7 +13,7 @@ if(($_SERVER["REQUEST_METHOD"] == "POST") && ($_REQUEST['resetpw'] == "Reset Pas
     // If result matched $myusername and $mypassword, table row must be 1 row
 
     if($count == 0){
-        $error = "Email address does not exists!";
+        $rpw_error = "Email address does not exists!";
     }else{
         $new_password = generateRandomString(17);
         $md5_password = md5($new_password);
@@ -44,7 +44,7 @@ if(($_SERVER["REQUEST_METHOD"] == "POST") && ($_REQUEST['resetpw'] == "Reset Pas
                 <input type="text" name="email" class="form-control" placeholder="username" aria-label="username" aria-describedby="basic-addon1" required>
             </div>
             <div class=" mb-3 bg-warning" align="center">
-            <?php echo $error; ?>
+            <?php echo $rpw_error; ?>
             </div>   
             <div class="form-group">
                 <input class="btn btn-primary" type="submit" name="resetpw" value="Reset Password">

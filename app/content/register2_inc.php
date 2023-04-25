@@ -13,7 +13,7 @@
             // If result matched $myusername and $mypassword, table row must be 1 row
       
             if($count == 1) {
-                $error = "Email address already exists!";
+                $reg_error = "Email address already exists!";
             }
             if($count == 0) {
             
@@ -74,7 +74,7 @@
             <input type="text" class="form-control" name="email" placeholder="email" aria-label="Username" aria-describedby="basic-addon1" required>
             </div>
             <div class=" mb-3 bg-warning" align="center">
-            <?php echo $error; ?>
+            <?php echo $reg_error; ?>
             </div>
             <div class="form-group">
                 <input class="btn btn-primary" type="submit" name="submit_reg" value="Register">

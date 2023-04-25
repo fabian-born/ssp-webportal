@@ -10,7 +10,7 @@ You already have an account at <b>Self-Service Portal</b>? Then you can quickly 
                 <input type="password" name="password" class="form-control" placeholder="password" aria-label="password" aria-describedby="basic-addon1" required>
             </div>
             <div class=" mb-3 bg-warning" align="center">
-            <?php echo $error; ?>
+            <?php echo $login_error; ?>
             </div>
             <div class="form-group">
                 <input class="btn btn-primary" type="submit" name="submit_login" value="Login">
