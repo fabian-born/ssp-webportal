@@ -31,7 +31,7 @@ folder: user-systems/". $userdatainfo["usercode"] ."
 disksize: ". $resultostemplate["disk"] ;
 
     // echo $json_body;
-    send_apicall2awx("32", $json_body);
+    send_apicall2awx("10", $json_body);
 ?>
 
     <div class="container-fluid">
