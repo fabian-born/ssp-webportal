@@ -19,7 +19,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   servers: ". $row['hostname'];
   
       // echo $json_body;
-      send_apicall2awx("34", $json_body);
+      send_apicall2awx("12", $json_body);
   ?>
   <div class="alert alert-warning">
 
