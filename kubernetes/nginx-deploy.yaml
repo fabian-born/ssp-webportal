@@ -46,7 +46,7 @@ data:
           include fastcgi_params;
           fastcgi_param REQUEST_METHOD $request_method;
           fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-          fastcgi_pass 127.0.0.1:9000;
+          fastcgi_pass webui-backend:9000;
         }
       }
     }
@@ -58,7 +58,7 @@ data:
 kind: Pod
 apiVersion: v1
 metadata:
-  name: phpfpm-nginx-example
+  name: app
 spec:
   volumes:
     # Create the shared files volume to be used in both pods
@@ -69,7 +69,7 @@ spec:
 
   containers:
     # Our PHP-FPM application
-    - image: my-php-app:1.0.0
+    - image: fabianborn/ssp-webportal
       name: app
       # Important! After this container has started, the PHP files
       # in our Docker image aren't in the shared volume. We need to 
@@ -80,10 +80,6 @@ spec:
       # So, after the container has started, copy the PHP files from this
       # container's local filesystem (/app -- added via the Docker image) 
       # to the shared volume, which is mounted at /var/www/html.
-      lifecycle:
-        postStart:
-          exec:
-            command: ["/bin/sh", "-c", "cp -r /portal/. /var/www/html"]
     
     # Our nginx container, which uses the configuration declared above,
     # along with the files shared with the PHP-FPM app.
