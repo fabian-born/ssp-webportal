@@ -101,6 +101,12 @@
             </a>
           </li>
           <li>
+            <a href="?action=sysconfig">
+              <i class="fa fa-user"></i>
+              <span>System Config</span>
+            </a>
+          </li>
+          <li>
             <a href="https://up.cloudapps.fabianborn.net/status/portal-dev">
               <i class="fa fa-signal"></i>
               <span>System Status</span>
