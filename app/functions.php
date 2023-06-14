@@ -33,6 +33,7 @@ function send_apicall2awx($jobID, $jsoncontent){
     curl_setopt_array($ch, array(
         CURLOPT_POST => TRUE,
         CURLOPT_RETURNTRANSFER => TRUE,
+        CURLOPT_SSL_VERIFYPEER => FALSE,
         CURLOPT_HTTPHEADER => array(
             'Authorization: Bearer '.$authToken,
             'Content-Type: application/json'
