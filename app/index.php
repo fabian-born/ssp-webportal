@@ -65,6 +65,7 @@
           </span>
           <span class="user-role"> (<?php echo $userdata["usercode"]; ?>)</span>
           <span class="user-role">last login (UTC): <?php echo $login_last_session; ?></span>
+          <span class="user-role">version: 2023.06.15-dev</span>
         </div>
       </div>
       <!-- sidebar-header  -->
