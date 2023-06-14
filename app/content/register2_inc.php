@@ -53,7 +53,7 @@
                 userid: ". $rowuser["uid"] ."
                 usercode: ". $usercode;
 
-                send_apicall2awx("38", $json_body);
+                send_apicall2awx($config["aap_jid_createuser"], $json_body);
             }
 
      }
