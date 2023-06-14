@@ -1,5 +1,6 @@
 <?php
-   include('/app/config/config.php');
+   # include('/app/config/config.php');
+   include('./config/config.php');
    session_start();
    
    $user_check = $_SESSION['login_user'];
