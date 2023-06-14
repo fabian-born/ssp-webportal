@@ -40,10 +40,10 @@ function send_apicall2awx($jobID, $jsoncontent){
         ),
         CURLOPT_POSTFIELDS => json_encode($postData)
     ));
-    # echo $ch;
+    echo $ch;
     // Send the request
     $response = curl_exec($ch);
-    // echo $response;
+    echo $response;
     
     // Check for errors
     if($response === FALSE){
