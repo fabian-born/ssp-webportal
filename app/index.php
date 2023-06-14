@@ -65,7 +65,7 @@
           </span>
           <span class="user-role"> (<?php echo $userdata["usercode"]; ?>)</span>
           <span class="user-role">last login (UTC): <?php echo $login_last_session; ?></span>
-          <span class="user-role">version: 2023.06.15-dev</span>
+          <span class="user-role">version: 2023.06.14-dev</span>
         </div>
       </div>
       <!-- sidebar-header  -->
@@ -101,14 +101,16 @@
               <span><?php echo $userdata["surename"] . " " . $userdata["lastname"]; ?></span>
             </a>
           </li>
+<!--
           <li>
             <a href="?action=sysconfig">
               <i class="fa fa-user"></i>
               <span>System Config</span>
             </a>
           </li>
+!-->
           <li>
-            <a href="https://up.cloudapps.fabianborn.net/status/portal-dev">
+            <a href="http://digitaltwin-ssp-dev-kuma.ntap-wdf.local/status/digitaltwin-ssp">
               <i class="fa fa-signal"></i>
               <span>System Status</span>
             </a>
