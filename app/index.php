@@ -101,14 +101,18 @@
               <span><?php echo $userdata["surename"] . " " . $userdata["lastname"]; ?></span>
             </a>
           </li>
-<!--
+<?php
+  if($userdata["usergroup"] == "0") {
+?>
           <li>
             <a href="?action=sysconfig">
               <i class="fa fa-user"></i>
               <span>System Config</span>
             </a>
           </li>
-!-->
+  <?php
+  }
+  ?>
           <li>
             <a href="http://digitaltwin-ssp-dev-kuma.ntap-wdf.local/status/digitaltwin-ssp">
               <i class="fa fa-signal"></i>
