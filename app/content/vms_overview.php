@@ -104,3 +104,47 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 ?>
   </tbody>
 </table>
+
+
+
+
+<!-- alle vms -->
+<?php 
+if ($userdata["usergroup"] == 0){
+?>  
+
+<table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Hostname</th>
+            <th scope="col">IP Address</th>
+            <th scope="col">State</th>
+            <th scope="col">Action</th>
+      
+          </tr>
+        </thead>
+        <tbody>
+      <?php
+<?php
+while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+{    
+    $vmcount++;
+    echo "<tr>";
+    echo "<th scope=row>". $vmcount ."</td>
+    <td scope=col>". $row['hostname'] ."</td>
+    <td scope=col>". $row['ipaddress'] ."</td>
+    <td scope=col>". $row['state'] ."</td>
+    <td scope=col>
+        <a href='?". $_ENV['QUERY_STRING'] . "&vmid=" . $row['vmid'] . "vmaction=power'><i class=\"fa fa-power-off\"></i></a> &nbsp; 
+        <button type=\"button\" class=\"btn btn-outline-danger btn-sm delete-button\" data-toggle=\"modal\" data-target=\"#exampleModal" .$row['vmid']. "\" data-id=\"" . $row['vmid'] . "\">delete</button>
+    </td>";
+    echo "</tr>";
+}
+?>
+</tbody>
+</table>
+
+<?php
+}
+?>

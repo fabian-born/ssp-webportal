@@ -25,7 +25,7 @@
                 $usercode = generateRandomString(8);
                 $wopassword = generateRandomString(17);
                 $password =  md5($wopassword);
-                $update_sql = mysqli_query($db,"INSERT INTO users (uid, username, surename,lastname,password,usercode,lastlogin) VALUES (NULL, \"" . $_POST['email'] . "\", \"" . $_POST['firstname'] . "\",\"" . $_POST['lastname'] . "\",\"" . $password . "\",\"" . $usercode . "\", now());");
+                $update_sql = mysqli_query($db,"INSERT INTO users (uid, username, surename,lastname,password,usercode,usergroup,lastlogin) VALUES (NULL, \"" . $_POST['email'] . "\", \"" . $_POST['firstname'] . "\",\"" . $_POST['lastname'] . "\",\"" . $password . "\",\"" . $usercode . "\", "3", now());");
                 
                 $aduser = strtolower(substr($_POST['firstname'],0,3) ."". substr($_POST['lastname'],0,3));
 
