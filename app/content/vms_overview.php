@@ -18,7 +18,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   folder: user-systems/". $userdatainfo["usercode"] ."
   servers: ". $row['hostname'];
   
-      echo $json_body;
+      // echo $json_body;
       send_apicall2awx($config["aap_jid_deletevm"], $json_body);
   ?>
   <div class="alert alert-warning">
@@ -56,20 +56,22 @@ $result = mysqli_query($db,$sql);
           </tr>
         </thead>
         <tbody>
-      <?php
+
+<?php
+
 
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {    
     $vmcount++;
     echo "<tr>";
-    echo "<th scope=row>". $vmcount ."</td>
-    <td scope=col>". $row['hostname'] ."</td>
-    <td scope=col>". $row['ipaddress'] ."</td>
-    <td scope=col>". $row['state'] ."</td>
-    <td scope=col>
-        <a href='?". $_ENV['QUERY_STRING'] . "&vmid=" . $row['vmid'] . "vmaction=power'><i class=\"fa fa-power-off\"></i></a> &nbsp; 
-        <button type=\"button\" class=\"btn btn-outline-danger btn-sm delete-button\" data-toggle=\"modal\" data-target=\"#exampleModal" .$row['vmid']. "\" data-id=\"" . $row['vmid'] . "\">delete</button>
-    </td>";
+    echo "<th scope=row><small>". $vmcount ."</small></td>
+    <td scope=col><small>". $row['hostname'] ."</small></td>
+    <td scope=col><small>". $row['ipaddress'] ."</small></td>
+    <td scope=col><small>". $row['state'] ."</small></td>
+    <td scope=col><small>
+        <small><a href='?". $_ENV['QUERY_STRING'] . "&vmid=" . $row['vmid'] . "vmaction=power'> <button type=\"button\" class=\"btn btn-secondary btn-sm\"> Power Toggle </button></a></small> &nbsp; 
+        <button type=\"button\" class=\"btn btn-danger btn-sm delete-button\" data-toggle=\"modal\" data-target=\"#exampleModal" .$row['vmid']. "\" data-id=\"" . $row['vmid'] . "\">delete</button>
+        </small></td>";
     echo "</tr>";
 ?>
 <!-- Modal -->
@@ -111,33 +113,38 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 <!-- alle vms -->
 <?php 
 if ($userdata["usergroup"] == 0){
-?>  
 
-<table class="table table-hover">
+  $sql = "SELECT vmid,hostname,ipaddress,state,owner FROM vms,users where vms.owner = users.uid and vms.state != 'deleting'";
+  $result = mysqli_query($db,$sql);
+  
+    $count = mysqli_num_rows ( $result );
+?>  
+<h3>All User VMs</h3>
+<table class="table table-condensed">
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Hostname</th>
             <th scope="col">IP Address</th>
             <th scope="col">State</th>
+            <th scope="col">Owner</th>
             <th scope="col">Action</th>
       
           </tr>
         </thead>
         <tbody>
-      <?php
 <?php
+  $vmcount=0;
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {    
     $vmcount++;
     echo "<tr>";
-    echo "<th scope=row>". $vmcount ."</td>
-    <td scope=col>". $row['hostname'] ."</td>
-    <td scope=col>". $row['ipaddress'] ."</td>
-    <td scope=col>". $row['state'] ."</td>
-    <td scope=col>
-        <a href='?". $_ENV['QUERY_STRING'] . "&vmid=" . $row['vmid'] . "vmaction=power'><i class=\"fa fa-power-off\"></i></a> &nbsp; 
-        <button type=\"button\" class=\"btn btn-outline-danger btn-sm delete-button\" data-toggle=\"modal\" data-target=\"#exampleModal" .$row['vmid']. "\" data-id=\"" . $row['vmid'] . "\">delete</button>
+    echo "<th scope=row><small>". $vmcount ."</small></td>
+    <td scope=col><small>". $row['hostname'] ."</small></td>
+    <td scope=col><small>". $row['ipaddress'] ."</small></td>
+    <td scope=col><small>". $row['state'] ."</small></td>
+    <td scope=col><small>". $row['owner'] ."</small></td>
+    <td scope=col><small></small>
     </td>";
     echo "</tr>";
 }

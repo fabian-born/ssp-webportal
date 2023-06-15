@@ -47,7 +47,7 @@ disksize: ". $resultostemplate["disk"] ;
   <div class="row mb-3">
     <label for="vmname" class="col-sm-2 col-form-label">VM Name</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="vmname" name="vmname">
+      <input type="text" class="form-control" id="vmname" name="vmname" required>
     </div>
   </div>
   <div class="row mb-3">
@@ -59,7 +59,7 @@ disksize: ". $resultostemplate["disk"] ;
   <div class="row mb-3">
     <label for="inputOSTemplate" class="col-sm-2 col-form-label">OS Template</label>
     <div class="col-sm-10">
-        <select id="inputState" class="form-control" name="ostemplate">
+        <select id="inputState" class="form-control" name="ostemplate" required>
         <option selected>Choose...</option>
         <?php
         $sql = "SELECT ostid,name,ram,vcpu,disk FROM ostemplate";
