@@ -10,7 +10,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "SELECT uid FROM users WHERE username = '$login_session'";
     $result = mysqli_query($db,$sql);
     $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-    echo "INSERT INTO k8s (kid,owner,clustername,state,kubeconfig) VALUES (NULL, " . $row['uid'] . ", " . $_POST['clustername'] . " ,\"deploying\", NULL);";
+    // echo "INSERT INTO k8s (kid,owner,clustername,state,kubeconfig) VALUES (NULL, " . $row['uid'] . ", " . $_POST['clustername'] . " ,\"deploying\", NULL);";
     $update_sql = mysqli_query($db,"INSERT INTO k8s (kid,owner,clustername,state,kubeconfig) VALUES (NULL, " . $row['uid'] . ", \"" . $_POST['clustername'] . "\" ,\"deploying\", NULL);");
     echo $update_sql;
     // echo $json_body;
