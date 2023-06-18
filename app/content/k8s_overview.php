@@ -19,7 +19,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   servers: ". $row['hostname'];
   
       // echo $json_body;
-      send_apicall2awx($config["aap_jid_deletek8s"], $json_body);
+      //send_apicall2awx($config["aap_jid_deletek8s"], $json_body);
   ?>
   <div class="alert alert-warning">
 
@@ -68,7 +68,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
     <td scope=col><small>". $row['kubeconfig'] ."</small></td>
     <td scope=col><small>
         <small><a href='?". $_ENV['QUERY_STRING'] . "&vmid=" . $row['kid‚'] . "vmaction=power'> <button type=\"button\" class=\"btn btn-secondary btn-sm\"> Power Toggle </button></a></small> &nbsp; 
-        <button type=\"button\" class=\"btn btn-danger btn-sm delete-button\" data-toggle=\"modal\" data-target=\"#exampleModal" .$row['vmid']. "\" data-id=\"" . $row['vmid'] . "\">delete</button>
+        <button type=\"button\" class=\"btn btn-danger btn-sm delete-button\" data-toggle=\"modal\" data-target=\"#exampleModal" .$row['kid']. "\" data-id=\"" . $row['kid'] . "\">delete</button>
         </small></td>";
     echo "</tr>";
 ?>
