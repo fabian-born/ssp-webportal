@@ -137,7 +137,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
     echo "<th scope=row><small>". $vmcount ."</small></td>
     <td scope=col><small>". $row['clustername'] ."</small></td>
     <td scope=col><small>". $row['state'] ."</small></td>
-    <td scope=col><small>". $row['u.username'] ."</small></td>
+    <td scope=col><small>". $row['username'] ."</small></td>
     <td scope=col><small></small>
     </td>";
     echo "</tr>";
