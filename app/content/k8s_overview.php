@@ -6,20 +6,20 @@ include ("./config/config.php");
 <?php
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
-  $sql = "SELECT vmid,hostname,ipaddress,state FROM vms WHERE vmid = " . $_POST['vmid'] ;
+  $sql = "SELECT kid,hostname,ipaddress,state FROM k8s WHERE kid = " . $_POST['kid'] ;
   $result = mysqli_query($db,$sql);
   $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
   $sqluserinfo = "SELECT * FROM users WHERE username = '$login_session'";
   $resultuserinfo = mysqli_query($db,$sqluserinfo);
   $userdatainfo= mysqli_fetch_array($resultuserinfo, MYSQLI_ASSOC);
 
-  $delete_sql = mysqli_query($db,"DELETE FROM vms where vmid = " . $_POST['vmid'] );
+  $delete_sql = mysqli_query($db,"DELETE FROM vms where kid = " . $_POST['kid'] );
   $json_body = "
   folder: user-systems/". $userdatainfo["usercode"] ."
   servers: ". $row['hostname'];
   
       // echo $json_body;
-      send_apicall2awx("34", $json_body);
+      send_apicall2awx($config["aap_jid_deletek8s"], $json_body);
   ?>
   <div class="alert alert-warning">
 
@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $vmcount = 0;
 
-$sql = "SELECT vmid,hostname,ipaddress,state FROM vms,users where vms.owner = users.uid and users.username = '$login_session' and vms.state != 'deleting'";
+$sql = "SELECT kid,clustername,state,kubeconfig FROM k8s,users where k8s.owner = users.uid and users.username = '$login_session' ";
 $result = mysqli_query($db,$sql);
 
   $count = mysqli_num_rows ( $result );
@@ -48,9 +48,9 @@ $result = mysqli_query($db,$sql);
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Hostname</th>
-            <th scope="col">IP Address</th>
+            <th scope="col">Cluster Name/th>
             <th scope="col">State</th>
+            <th scope="col">Configuration File</th>
             <th scope="col">Action</th>
       
           </tr>
@@ -63,17 +63,17 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
     $vmcount++;
     echo "<tr>";
     echo "<th scope=row>". $vmcount ."</td>
-    <td scope=col>". $row['hostname'] ."</td>
-    <td scope=col>". $row['ipaddress'] ."</td>
+    <td scope=col>". $row['clustername'] ."</td>
     <td scope=col>". $row['state'] ."</td>
+    <td scope=col>". $row['kubeconfig'] ."</td>
     <td scope=col>
-        <a href='?". $_ENV['QUERY_STRING'] . "&vmid=" . $row['vmid'] . "vmaction=power'><i class=\"fa fa-power-off\"></i></a> &nbsp; 
-        <button type=\"button\" class=\"btn btn-outline-danger btn-sm delete-button\" data-toggle=\"modal\" data-target=\"#exampleModal" .$row['vmid']. "\" data-id=\"" . $row['vmid'] . "\">delete</button>
+        <a href='?". $_ENV['QUERY_STRING'] . "&kid=" . $row['kid'] . "vmaction=power'><i class=\"fa fa-power-off\"></i></a> &nbsp; 
+        <button type=\"button\" class=\"btn btn-outline-danger btn-sm delete-button\" data-toggle=\"modal\" data-target=\"#exampleModal" .$row['kid']. "\" data-id=\"" . $row['kid'] . "\">delete</button>
     </td>";
     echo "</tr>";
 ?>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal<?php echo $row['vmid'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal<?php echo $row['kid'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -89,7 +89,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
       </div>
       <div class="modal-footer">
       <form action="" method="post"> 
-        <input type="hidden" id="k8sid" name="k8sid" value="<?php echo $row['vmid'] ?>">
+        <input type="hidden" id="k8sid" name="k8sid" value="<?php echo $row['kid'] ?>">
         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
         <button data-id="" type="submit" class="btn btn-danger btn-sm">Delete Cluster</button>
 
