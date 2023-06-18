@@ -11,7 +11,7 @@ if ($_REQUEST["sub"] == "overview"){  $overview_active = "active"; }
 ?>
 
 <div class="container-fluid">
-      <h2><?php echo $pageTitle; ?></h2>
+      <h2><img src="/images/vm.jpg" width="50"><?php echo $pageTitle; ?></h2>
       <hr>
       <div class="row">
         <div class="form-group col-md-12">
