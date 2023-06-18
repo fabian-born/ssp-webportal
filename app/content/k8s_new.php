@@ -10,25 +10,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "SELECT uid FROM users WHERE username = '$login_session'";
     $result = mysqli_query($db,$sql);
     $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-    $update_sql = mysqli_query($db,"INSERT INTO vms (kid, hostname, ostype,state, ipaddress,templateid,owner) VALUES (NULL,\"" . $_POST['vmname'] . "\", 0 ,\"deploying\", 0,\"" . $_POST['ostemplate'] . "\", " . $row['uid'] . ");");
-
-    $sqlostemplate = "SELECT * FROM ostemplate WHERE ostid = " . $_POST['ostemplate'];
-    $rowostemplate = mysqli_query($db,$sqlostemplate);
-    $resultostemplate = mysqli_fetch_array($rowostemplate,MYSQLI_ASSOC);
-
-    $sqluserinfo = "SELECT * FROM users WHERE username = '$login_session'";
-    $resultuserinfo = mysqli_query($db,$sqluserinfo);
-    $userdatainfo= mysqli_fetch_array($resultuserinfo, MYSQLI_ASSOC);
-    $aduser = strtolower(substr($userdatainfo['surename'],0,3) ."". substr($userdatainfo['lastname'],0,3));
-    // ubuntu-focal-cloudimg
-    $json_body = "
-vmtemplate: ". $resultostemplate["vmimage"] ."
-servers: ". $_POST['vmname'] ."
-ram: ". $resultostemplate["ram"] ."
-cpu: ". $resultostemplate["vcpu"] ."
-username: " . $aduser ."
-folder: user-systems/". $userdatainfo["usercode"] ."
-disksize: ". $resultostemplate["disk"] ;
+    $update_sql = mysqli_query($db,"INSERT INTO k8s (kid, clustername, owner,state,kubeconfig) VALUES (NULL,\"" . $_POST['clustername'] . "\", ". $row['uid'] ." ,\"deploying\"", NULL););
 
     // echo $json_body;
     send_apicall2awx($config["aap_jid_createvm"] , $json_body);
