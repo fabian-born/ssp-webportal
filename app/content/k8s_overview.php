@@ -5,7 +5,6 @@ include ("./config/config.php");
 ?>
 <?php
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-  phpinfo();
   $sql = "SELECT kid,clustername,state FROM k8s WHERE kid = " . $_POST['kid'] ;
   $result = mysqli_query($db,$sql);
   $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
