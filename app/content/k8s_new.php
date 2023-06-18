@@ -10,7 +10,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "SELECT uid FROM users WHERE username = '$login_session'";
     $result = mysqli_query($db,$sql);
     $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-    $update_sql = mysqli_query($db,"INSERT INTO k8s (kid, clustername, owner,state,kubeconfig) VALUES (NULL,\"" . $_POST['clustername'] . "\", ". $row['uid'] ." ,\"deploying\"", NULL););
+    $update_sql = mysqli_query($db,"INSERT INTO k8s (kid, clustername, owner,state,kubeconfig) VALUES (NULL,\"" . $_POST['clustername'] . "\", " . $row['uid'] . " ,\"deploying\", NULL);");
 
     // echo $json_body;
     send_apicall2awx($config["aap_jid_createvm"] , $json_body);
