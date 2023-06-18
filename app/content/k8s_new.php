@@ -57,20 +57,7 @@ disksize: ". $resultostemplate["disk"] ;
     </div>
   </div>
   <div class="row mb-3">
-    <label for="inputOSTemplate" class="col-sm-2 col-form-label">OS Template</label>
-    <div class="col-sm-10">
-        <select id="inputState" class="form-control" name="ostemplate" required>
-        <option selected>Choose...</option>
-        <?php
-        $sql = "SELECT ostid,name,ram,vcpu,disk FROM ostemplate";
-        $result = mysqli_query($db,$sql);
-        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
-        {    
-            echo "<option value='". $row['ostid'] . "'>". $row['name'] ." (" . $row['vcpu'] ."/". $row['ram'] . "/" . $row['disk'] . ")</option>";
-        }            
-        ?>
-        </select>
-    </div>
+
   </div>
 
 

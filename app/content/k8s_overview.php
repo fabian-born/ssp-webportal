@@ -104,3 +104,48 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 ?>
   </tbody>
 </table>
+
+
+<!-- alle vms -->
+<?php 
+if ($userdata["usergroup"] == 0){
+
+  $sql = "SELECT kid,clustername,state,owner FROM k8s,users where k8s.owner = users.uid and vms.state != 'deleting'";
+  $result = mysqli_query($db,$sql);
+  
+    $count = mysqli_num_rows ( $result );
+?>  
+<h3>All User VMs</h3>
+<table class="table table-condensed">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Clustername</th>
+            <th scope="col">State</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Action</th>
+      
+          </tr>
+        </thead>
+        <tbody>
+<?php
+  $vmcount=0;
+while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+{    
+    $vmcount++;
+    echo "<tr>";
+    echo "<th scope=row><small>". $vmcount ."</small></td>
+    <td scope=col><small>". $row['clustername'] ."</small></td>
+    <td scope=col><small>". $row['state'] ."</small></td>
+    <td scope=col><small>". $row['owner'] ."</small></td>
+    <td scope=col><small></small>
+    </td>";
+    echo "</tr>";
+}
+?>
+</tbody>
+</table>
+
+<?php
+}
+?>
