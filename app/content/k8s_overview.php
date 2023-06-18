@@ -13,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   $resultuserinfo = mysqli_query($db,$sqluserinfo);
   $userdatainfo= mysqli_fetch_array($resultuserinfo, MYSQLI_ASSOC);
 
-  $delete_sql = mysqli_query($db,"DELETE FROM vms where kid = " . $_POST['kid'] );
+  $delete_sql = mysqli_query($db,"DELETE FROM k8s where kid = " . $_POST['kid'] );
   $json_body = "
   folder: user-systems/". $userdatainfo["usercode"] ."
   servers: ". $row['hostname'];
@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   ?>
   <div class="alert alert-warning">
 
-  <strong>Info!</strong> VM ( <?php echo $row['hostname'] ?> ) will be deleted now!
+  <strong>Info!</strong> Kubernetes cluster ( <?php echo $row['clustername'] ?> ) will be deleted now!
 </div>
 <?php
 }
@@ -83,7 +83,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
         </button>
       </div>
       <div class="modal-body">
-        You want to delete your Kubernetes Cluster: <strong> <?php echo $row['hostname'] ?></strong><p>
+        You want to delete your Kubernetes Cluster: <strong> <?php echo $row['clustername'] ?></strong><p>
         
         Please approve!
       </div>
