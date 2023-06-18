@@ -67,7 +67,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
     <td scope=col><small>". $row['state'] . "</small></td>
     <td scope=col><small>". $row['kubeconfig'] ."</small></td>
     <td scope=col><small>
-        <small><a href='?". $_ENV['QUERY_STRING'] . "&vmid=" . $row['kid'] . "vmaction=power'> <button type=\"button\" class=\"btn btn-secondary btn-sm\"> Power Toggle </button></a></small> &nbsp; 
+        <small><a href='?". $_ENV['QUERY_STRING'] . "&vmid=" . $row['kid‚'] . "vmaction=power'> <button type=\"button\" class=\"btn btn-secondary btn-sm\"> Power Toggle </button></a></small> &nbsp; 
         <button type=\"button\" class=\"btn btn-danger btn-sm delete-button\" data-toggle=\"modal\" data-target=\"#exampleModal" .$row['vmid']. "\" data-id=\"" . $row['vmid'] . "\">delete</button>
         </small></td>";
     echo "</tr>";
@@ -110,7 +110,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 <?php 
 if ($userdata["usergroup"] == 0){
 
-  $sql = "SELECT kid,clustername,state,owner FROM k8s,users where k8s.owner = users.uid and k8s.state != 'deleting'";
+  $sql = "SELECT kid,clustername,state,owner,u.username FROM k8s join users as u where owner = u.uid; ;
   $result = mysqli_query($db,$sql);
   
     $count = mysqli_num_rows ( $result );
