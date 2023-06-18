@@ -110,7 +110,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 <?php 
 if ($userdata["usergroup"] == 0){
 
-  $sql = "SELECT kid,clustername,state,owner FROM k8s,users where k8s.owner = users.uid and vms.state != 'deleting'";
+  $sql = "SELECT kid,clustername,state,owner FROM k8s,users where k8s.owner = users.uid and k8s.state != 'deleting'";
   $result = mysqli_query($db,$sql);
   
     $count = mysqli_num_rows ( $result );
