@@ -6,7 +6,7 @@ include ("./config/config.php");
 <?php
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
-  $sql = "SELECT kid,hostname,ipaddress,state FROM k8s WHERE kid = " . $_POST['kid'] ;
+  $sql = "SELECT kid,clustername,state FROM k8s WHERE kid = " . $_POST['kid'] ;
   $result = mysqli_query($db,$sql);
   $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
   $sqluserinfo = "SELECT * FROM users WHERE username = '$login_session'";
@@ -48,7 +48,7 @@ $result = mysqli_query($db,$sql);
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Cluster Name/th>
+            <th scope="col">Cluster Name</th>
             <th scope="col">State</th>
             <th scope="col">Configuration File</th>
             <th scope="col">Action</th>
