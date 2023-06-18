@@ -3,7 +3,6 @@
 include ("./config/config.php");
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-        phpinfo();
 //    echo $_POST['vmname'];
 //    echo $_POST['ostemplate'];
 //    echo $_POST['description'];
@@ -11,8 +10,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "SELECT uid FROM users WHERE username = '$login_session'";
     $result = mysqli_query($db,$sql);
     $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-    echo "INSERT INTO k8s (kid, clustername, owner,state,kubeconfig) VALUES (NULL,\"" . $_POST['clustername'] . "\", " . $row['uid'] . " ,\"deploying\", NULL);";
-    $update_sql = mysqli_query($db,"INSERT INTO k8s (kid, clustername, owner,state,kubeconfig) VALUES (NULL,\"" . $_POST['clustername'] . "\", " . $row['uid'] . " ,\"deploying\", NULL);");
+    echo "INSERT INTO k8s (kid,owner,clustername,state,kubeconfig) VALUES (NULL,\"" . $row['uid'] . "," . $_POST['clustername'] . "\" ,\"deploying\", NULL);";
+    $update_sql = mysqli_query($db,"INSERT INTO k8s (kid,owner,clustername,state,kubeconfig) VALUES (NULL,\"" . $row['uid'] . "," . $_POST['clustername'] . "\" ,\"deploying\", NULL);");
 
     // echo $json_body;
     # send_apicall2awx($config["aap_jid_createvm"] , $json_body);
