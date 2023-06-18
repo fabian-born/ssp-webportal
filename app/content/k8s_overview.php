@@ -110,7 +110,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 <?php 
 if ($userdata["usergroup"] == 0){
 
-  $sql = "SELECT kid,clustername,state,owner,u.username FROM k8s join users as u where owner = u.uid; ;
+  $sql = "SELECT kid,clustername,state,owner,u.username FROM k8s join users as u where owner = u.uid";
   $result = mysqli_query($db,$sql);
   
     $count = mysqli_num_rows ( $result );
