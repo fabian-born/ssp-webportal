@@ -3,6 +3,7 @@
 include ("./config/config.php");
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
+        phpinfo();
 //    echo $_POST['vmname'];
 //    echo $_POST['ostemplate'];
 //    echo $_POST['description'];
@@ -27,7 +28,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <form action="" method = "post">
   <div class="row mb-3">
-    <label for="vmname" class="col-sm-2 col-form-label">VM Name</label>
+    <label for="clustername" class="col-sm-2 col-form-label">Kubernetes Clustername</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="clustername" name="clustername" required>
     </div>
