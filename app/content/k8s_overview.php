@@ -89,7 +89,7 @@ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
       </div>
       <div class="modal-footer">
       <form action="" method="post"> 
-        <input type="hidden" id="k8sid" name="k8sid" value="<?php echo $row['kid'] ?>">
+        <input type="hidden" id="kid" name="kid" value="<?php echo $row['kid'] ?>">
         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
         <button data-id="" type="submit" class="btn btn-danger btn-sm">Delete Cluster</button>
 
