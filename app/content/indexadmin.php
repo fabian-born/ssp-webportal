@@ -1,7 +1,7 @@
 <?php
 $pageTitle = "Welcome to Selfservice Portal";
 
-if ($_SERVER['REQUEST_URI'] == "/") {  $arch_active = "active"; $requested_content = "arch";  }
+if (($_SERVER['REQUEST_URI'] == "/") or ($_SERVER['REQUEST_URI'] == "/index")){  $arch_active = "active"; $requested_content = "arch";  }
 if ($_SERVER['REQUEST_URI'] == "/?userflow") {  $userflow_active = "active"; $requested_content = "userflow";  }
 if ($_SERVER['REQUEST_URI'] == "/?arch")  {  $arch_active = "active"; $requested_content = "arch"; }
 
