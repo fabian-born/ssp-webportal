@@ -14,7 +14,7 @@
   
 
    if(!isset($_SESSION['login_user'])){
-      header("location:/login/login.php");
+      header("location:/login/login");
       die();
    }
 ?>
