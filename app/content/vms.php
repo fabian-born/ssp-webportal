@@ -32,8 +32,8 @@ username: " . $aduser ."
 folder: user-systems/". $userdatainfo["usercode"] ."
 disksize: ". $resultostemplate["disk"] ;
 
-    // send_apicall2awx($config["aap_jid_createvm"] , $json_body);
-       $_SERVER['REQUEST_URI'] = "/vms?overview";
+    send_apicall2awx($config["aap_jid_createvm"] , $json_body);
+    $_SERVER['REQUEST_URI'] = "/vms?overview";
  }
 
 
@@ -51,9 +51,8 @@ disksize: ". $resultostemplate["disk"] ;
     folder: user-systems/". $userdatainfo["usercode"] ."
     servers: ". $row['hostname'];
     
-        // echo $json_body;
-     #   send_apicall2awx($config["aap_jid_deletevm"], $json_body);
-     $_SERVER['REQUEST_URI'] = "/vms?overview";
+    send_apicall2awx($config["aap_jid_deletevm"], $json_body);
+    $_SERVER['REQUEST_URI'] = "/vms?overview";
  }
 
 if ($_SERVER['REQUEST_URI'] == "/vms") {  $overview_active = "active"; $requested_content = "overview";  }

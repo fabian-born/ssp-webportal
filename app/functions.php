@@ -20,46 +20,47 @@ function generateRandomString($length = 10) {
 
 function send_apicall2awx($jobID, $jsoncontent){
     include("config/config.php");
+    if ($config["aap_enabled"] == $true){
+        $authToken = $config["awx_auth_token"];
     
-    $authToken = $config["awx_auth_token"];
-    
-    // The data to send to the API
-    $postData = array(
-        'extra_vars' => $jsoncontent
-    );
-    
-    // Setup cURL
-    $ch = curl_init( $config["awx_host"] . '/api/v2/workflow_job_templates/'. $jobID . '/launch/');
-    curl_setopt_array($ch, array(
-        CURLOPT_POST => TRUE,
-        CURLOPT_RETURNTRANSFER => TRUE,
-        CURLOPT_SSL_VERIFYPEER => FALSE,
-        CURLOPT_HTTPHEADER => array(
-            'Authorization: Bearer '.$authToken,
-            'Content-Type: application/json'
-        ),
-        CURLOPT_POSTFIELDS => json_encode($postData)
-    ));
-    // echo $ch;
-    // Send the request
-    $response = curl_exec($ch);
-    // echo $response;
-    
-    // Check for errors
-    if($response === FALSE){
-        echo "error";
-        die(curl_error($ch));
+        // The data to send to the API
+        $postData = array(
+            'extra_vars' => $jsoncontent
+        );
+        
+        // Setup cURL
+        $ch = curl_init( $config["awx_host"] . '/api/v2/workflow_job_templates/'. $jobID . '/launch/');
+        curl_setopt_array($ch, array(
+            CURLOPT_POST => TRUE,
+            CURLOPT_RETURNTRANSFER => TRUE,
+            CURLOPT_SSL_VERIFYPEER => FALSE,
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Bearer '.$authToken,
+                'Content-Type: application/json'
+            ),
+            CURLOPT_POSTFIELDS => json_encode($postData)
+        ));
+        // echo $ch;
+        // Send the request
+        $response = curl_exec($ch);
+        // echo $response;
+        
+        // Check for errors
+        if($response === FALSE){
+            echo "error";
+            die(curl_error($ch));
+        }
+        
+        // Decode the response
+        $responseData = json_decode($response, TRUE);
+        
+        // Close the cURL handler
+        curl_close($ch);
+        
+        // Print the date from the response
+        // echo $responseData['published'];
+        return $responseData;
     }
-    
-    // Decode the response
-    $responseData = json_decode($response, TRUE);
-    
-    // Close the cURL handler
-    curl_close($ch);
-    
-    // Print the date from the response
-    // echo $responseData['published'];
-    return $responseData;
 }
 
 

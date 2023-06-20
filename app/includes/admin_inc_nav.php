@@ -52,7 +52,7 @@
           </li>
           <li>
             <a href="/profile">
-              <i class="fa fa-user"></i>
+              <i class="fa fa-id-card"></i>
               <span><?php echo $userdata["surename"] . " " . $userdata["lastname"]; ?></span>
             </a>
           </li>
@@ -60,8 +60,8 @@
   if($userdata["usergroup"] == "0") {
 ?>
           <li>
-            <a href="?action=sysconfig">
-              <i class="fa fa-user"></i>
+            <a href="/sysconfig">
+              <i class="fa fa-cog"></i>
               <span>System Config</span>
             </a>
           </li>
