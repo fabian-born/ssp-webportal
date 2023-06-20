@@ -19,7 +19,7 @@
   <main class="page-content">
 
   
-      <?php include("./content/index_content_overview.php"); ?> 
+      <?php include("./content/indexadmin.php"); ?> 
 
 
 
