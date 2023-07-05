@@ -70,9 +70,9 @@ if (substr( $_SERVER['REQUEST_URI'], 0, 11 ) == '/vms?action') { $requested_cont
         <div class="form-group col-md-12">
           <p></p>
         </div>
-        <div class="form-group col-md-12">
+<!--         <div class="form-group col-md-12">
         <ul class="nav nav-tabs">
-        <li class="nav-item">
+       <li class="nav-item">
             <a class="nav-link <?php echo $overview_active; ?>" href="/vms?overview">Overview VM</a>
         </li>
         <li class="nav-item">
@@ -80,6 +80,7 @@ if (substr( $_SERVER['REQUEST_URI'], 0, 11 ) == '/vms?action') { $requested_cont
         </li>
         </ul>
          </div>
+-->
          <div class="form-group col-md-12">
          <?php if(isset($requested_content)) { include("content/vms_content_". $requested_content . ".php"); } ?>
         </div>

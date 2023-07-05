@@ -3,4 +3,6 @@ app/config/ssh-keys/deploy-vm-automated
 app/config/ssh-keys/deploy-vm-automated.pub
 kubernetes/webui-config.yaml
 kubernetes/*
+app/test
+app/test/*
 

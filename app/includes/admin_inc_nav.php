@@ -3,7 +3,7 @@
       <div class="sidebar-brand">
         <a href="/"><img src="images/digitaltwin_logo.png" width="225"></a>
         <div id="close-sidebar">
-          <i class="fa fa-house"></i>
+          
         </div>
       </div>
       <div class="sidebar-header">
@@ -39,7 +39,8 @@
           </li>
           <li>
             <a href="/kubernetes">
-              <i class="fa fa-server"></i>
+            <i class="fa fa-server"></i>
+              
               <span>Kubernetes</span>
             </a>
           </li>       
